@@ -311,8 +311,8 @@ impl Frame<'_> {
             Instr::Load(e) => {
                 let address = stack.pop().unwrap();
                 ensure!(
-                    address > 0,
-                    "Load: Read a negative address value from the stack. Did we run out of memory?"
+                    address >= 0,
+                    "Load2: Read a negative address value from the stack. Did we run out of memory?"
                 );
                 let address = address as u32 + e.arg.offset;
                 ensure!(address % 4 == 0);
